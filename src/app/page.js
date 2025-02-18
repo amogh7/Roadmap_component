@@ -92,8 +92,8 @@ export default function Roadmap() {
                 ariaLabel="open course"
                 role="button"
               ></div>
+              <span className="title">{lesson.title}</span>
               <span>
-                {lesson.title}
                 {!checkCurrentLesson(lesson) && checkCompleted(lesson) && (
                   <img className="completed-image" src="completed.png" />
                 )}

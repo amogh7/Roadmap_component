@@ -76,6 +76,9 @@ body {
    border-top: 0;
  
 }
+.course-container:nth-child(odd) .title{
+  margin-left: 60px;
+}
 .course-container:nth-child(odd) .course-circle {
 	 left: 100%;
 	 margin-left: -23px;
@@ -105,6 +108,7 @@ body {
   top: 0;
   margin-right: -20px;
 }
+
 .course-container:nth-child(odd) .avatar{
   position: absolute;
   left: 100%;
