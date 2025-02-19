@@ -181,10 +181,10 @@ function CourseDialog(props) {
                 closeToast(lesson);
               }}
             >
-              finsish Course
+              finish Course
             </button>
           ) : (
-            <div>Please finsish previous course first </div>
+            <div>Please finish previous course first </div>
           )}
         </div>
       </div>
