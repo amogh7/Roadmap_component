@@ -95,7 +95,7 @@ export default function Roadmap() {
               <span className="title">{lesson.title}</span>
               <span>
                 {!checkCurrentLesson(lesson) && checkCompleted(lesson) && (
-                  <img className="completed-image" src="completed.png" />
+                  <img className="completed-image" src="completed.svg" />
                 )}
                 {checkCurrentLesson(lesson) && (
                   <img className="completed-image avatar" src="avatar.svg" />

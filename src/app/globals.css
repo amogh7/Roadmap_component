@@ -101,13 +101,19 @@ body {
   left: 100%;
   top: 0;
   margin-left: -23px;
+  background: azure;
+  border-radius: 50px;
 }
+
 .course-container:nth-child(even) .completed-image{
   position: absolute;
   right: 100%;
   top: 0;
-  margin-right: -20px;
+  margin-right: -24px;
+  background: azure;
+  border-radius: 50px;
 }
+
 
 .course-container:nth-child(odd) .avatar{
   position: absolute;
