@@ -146,7 +146,7 @@ export default function Roadmap() {
           localStorage.clear();
         }}
       >
-        Reset Everthing
+        Reset
       </button>
     </div>
   );
