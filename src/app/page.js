@@ -139,7 +139,7 @@ export default function Roadmap() {
       </main>
 
       <button
-        className="bg-red-950 pt-3 pb-3 px-3 rounded-md"
+        className="bg-red-950 text-slate-100 pt-3 pb-3 px-3 rounded-md"
         onClick={() => {
           setCompletedLessons([]);
           setLessons(defaultLessons);
