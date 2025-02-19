@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-const getAllLessons = [
+const defaultLessons = [
   { id: 1, title: "HTML Basics", link: "/course/html", showToast: false },
   { id: 2, title: "CSS Fundamentals", link: "/course/css", showToast: false },
   {
@@ -16,19 +16,44 @@ const getAllLessons = [
 
 export default function Roadmap() {
   const [completedLessons, setCompletedLessons] = useState([]);
-  const [lessons, setLessons] = useState(getAllLessons);
+  const [lessons, setLessons] = useState([]);
   const [newLessonTitle, setNewLessonTitle] = useState("");
 
   useEffect(() => {
+    const savedLessons =
+      JSON.parse(localStorage.getItem("roadmap-lessons")) || defaultLessons;
     const savedProgress =
       JSON.parse(localStorage.getItem("roadmap-progress")) || [];
+
+    setLessons(savedLessons);
     setCompletedLessons(savedProgress);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("roadmap-lessons", JSON.stringify(lessons));
+  }, [lessons]);
 
   const handleCourseCompleted = (lesson) => {
     const updatedProgress = [...new Set([...completedLessons, lesson.id])];
     setCompletedLessons(updatedProgress);
     localStorage.setItem("roadmap-progress", JSON.stringify(updatedProgress));
+  };
+
+  const handleAddNewLesson = () => {
+    if (newLessonTitle.trim() === "") return;
+
+    const newLesson = {
+      id: lessons.length + 1,
+      title: newLessonTitle,
+      link: "/course/custom",
+      showToast: false,
+    };
+
+    const updatedLessons = [...lessons, newLesson];
+    setLessons(updatedLessons);
+    localStorage.setItem("roadmap-lessons", JSON.stringify(updatedLessons));
+
+    setNewLessonTitle("");
   };
 
   function checkCompleted(lesson) {
@@ -57,24 +82,6 @@ export default function Roadmap() {
       )
     );
   }
-
-  const handleKeyPress = (event, lesson) => {
-    if (event.key === "Enter") {
-      showToast(lesson);
-    }
-  };
-
-  const handleAddNewLesson = () => {
-    if (newLessonTitle.trim() === "") return;
-    const newLesson = {
-      id: lessons.length + 1,
-      title: newLessonTitle,
-      link: "/course/custom",
-      showToast: false,
-    };
-    setLessons([...lessons, newLesson]);
-    setNewLessonTitle(""); // Clear input after adding
-  };
 
   return (
     <div className="flex flex-col items-center p-6">
@@ -105,9 +112,7 @@ export default function Roadmap() {
             <div
               onClick={() => showToast(lesson)}
               className="course-circle"
-              onKeyPress={(event) => handleKeyPress(event, lesson)}
               tabIndex={0}
-              aria-label="open course"
               role="button"
             ></div>
             <span className="title">{lesson.title}</span>
@@ -132,14 +137,16 @@ export default function Roadmap() {
           </div>
         ))}
       </main>
+
       <button
         className="bg-red-950 pt-3 pb-3 px-3 rounded-md"
         onClick={() => {
           setCompletedLessons([]);
+          setLessons(defaultLessons);
           localStorage.clear();
         }}
       >
-        Reset Progress
+        Reset Everthing
       </button>
     </div>
   );
@@ -157,21 +164,12 @@ function CourseDialog({
     return index === 0 || completedLessons.includes(lessons[index - 1].id);
   }
 
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      closeToast(lesson);
-    }
-  };
-
   return (
     <div className="flex flex-col my-6 bg-purple-950 shadow-sm border border-slate-200 rounded-lg absolute h-44 toast">
-      <div className="text-center mt-10">{lesson.title} </div>
+      <div className="text-center mt-10">{lesson.title}</div>
       <div
         onClick={() => closeToast(lesson)}
-        tabIndex={0}
-        aria-label="close button"
         className="cursor-pointer absolute right-4 top-4"
-        onKeyPress={handleKeyPress}
       >
         <Image
           priority
