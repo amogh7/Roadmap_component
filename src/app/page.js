@@ -89,7 +89,7 @@ export default function Roadmap() {
                 className="course-circle"
                 onKeyPress={(event) => handleKeyPress(event, lesson)}
                 tabIndex={0}
-                ariaLabel="open course"
+                aria-label="open course"
                 role="button"
               ></div>
               <span className="title">{lesson.title}</span>
@@ -116,13 +116,13 @@ export default function Roadmap() {
         })}
       </main>
       <button
-        className=" bg-red-950 pt-3 pb-3 pl-3 pr-3 rounded-md"
+        className="bg-red-950 pt-3 pb-3 pl-3 pr-3 rounded-md text-slate-50"
         onClick={() => {
           setCompletedLessons([]);
           localStorage.clear([]);
         }}
       >
-        reset progress
+        Reset progress
       </button>
     </div>
   );
@@ -174,7 +174,7 @@ function CourseDialog(props) {
         <div className="px-4 pb-4 pt-0 mt-2 flex justify-center">
           {checkPreviousCourseCompleted() || index == 0 ? (
             <button
-              className="rounded-md  bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              className="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="button"
               onClick={() => {
                 handleCourseCompleted(lesson);
