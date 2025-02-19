@@ -75,7 +75,7 @@ export default function Roadmap() {
 
   return (
     <div className="flex flex-col items-center p-6">
-      <h2 className="text-2xl font-bold mb-6">Learning Roadmap</h2>
+      <h2 className="text-2xl font-bold mb-6 text-rose-50">Learning Roadmap</h2>
 
       <main>
         {lessons.map((lesson, index) => {
