@@ -98,7 +98,7 @@ export default function Roadmap() {
                   <img className="completed-image" src="completed.png" />
                 )}
                 {checkCurrentLesson(lesson) && (
-                  <img className="completed-image avatar" src="avatar.png" />
+                  <img className="completed-image avatar" src="avatar.svg" />
                 )}
               </span>
               {lesson.showToast && (

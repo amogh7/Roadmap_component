@@ -114,12 +114,14 @@ body {
   left: 100%;
   top: -80px;
   margin-left: -23px;
+  
 }
 .course-container:nth-child(even) .avatar{
   position: absolute;
   right: 100%;
   top: -80px;
   margin-right: -20px;
+  
 }
 .course-container:nth-child(odd) .toast{
   position: absolute;
@@ -127,6 +129,7 @@ body {
   top: -80px;
   margin-left: 80px;
   width: 350px;
+
 }
 .course-container:nth-child(even) .toast{
   position: absolute;
